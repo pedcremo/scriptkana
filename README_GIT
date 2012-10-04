@@ -1,0 +1,13 @@
+GIT
+git://github.com/pedcremo/scriptkana.git
+
+SSH
+git@github.com:pedcremo/scriptkana.git
+
+HTTP
+https://github.com/pedcremo/scriptkana.git
+
+TUTORIAL
+--------
+http://learn.github.com/p/intro.html
+https://help.github.com/articles/create-a-repo
