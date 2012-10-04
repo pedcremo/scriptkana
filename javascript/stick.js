@@ -6,6 +6,12 @@ function Stick(context) {
   	this.imgObj.style.position= 'absolute';
 	this.position="bottom"; //Bottom,top,right,left, 
 	this.gap="25";    //From position in pixels
+	this.context=context;
+
+	//Heretem de la classe Observer pq nosaltres volem observar l'estat de la Ball
+	inherits(new Observer(), this);
+	//Ens apuntem com Observadors dels canvis d'estat de la bola
+	this.context.ball.AddObserver(this);
 
 	if (window.Event) {
 		document.captureEvents(Event.MOUSEMOVE);
@@ -16,6 +22,12 @@ function Stick(context) {
 		x= (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 	}*/
 	
+	this.Update = function(value){ //Value is a Ball Object
+		var pos=value.getPosition();
+		var limit=this.context.vpHeight-this.gap-value.imgObj.height;
+		if (pos.y>=limit) alert("Sóc el Observer stick "+pos.y);
+	}
+
 	this.locate = function(x,y){
 		
 		this.imgObj.style.left = (Math.round(x))+ 'px';

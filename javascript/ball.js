@@ -7,6 +7,11 @@ function Ball(context) {
   this.context=context;
   var self=this;
   
+  //Fem que Ball herete de Subject per tant 
+  //serà un objecte observable a altres objectes interessats
+  //en el seu estat
+  inherits(new Subject(),this);
+
   var speed2=2;
   //var directions = [ [2,-2],[-2,-2],[-2,2],[2,2]]; //4 directions
   //var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
@@ -15,6 +20,7 @@ function Ball(context) {
       
   //Move ball
   this.move= function(){	
+
   	self.locate(parseInt(self.imgObj.style.left)+directions[self.imgObj.meneja][0]*speed2,parseInt(self.imgObj.style.top)+directions[self.imgObj.meneja][1]*speed2);  
   }; //End move method
   
@@ -26,6 +32,10 @@ function Ball(context) {
 
  //Positionate Ball absolutetly
  this.locate = function(x,y){
+	
+	//Avisem als Observers interessats en el nostre estat que estem canviant de posició
+	this.Notify(this);
+
 	//Ens eixim per dalt o per baix
 	modul_dalt_baix=directions.length-1;
 

@@ -1,9 +1,5 @@
 //Here We include all components We need for the game
 
-var animate=null; //setInterval to mantain ball moving
-var context=null;
-
-
 function include(filename)
 {
 	var head = document.getElementsByTagName('head')[0];
@@ -15,9 +11,18 @@ function include(filename)
 	head.appendChild(script)
 }
 
+include("javascript/utils/ArrayList.js");
+include("javascript/utils/Observer.js");
+include("javascript/utils/Subject.js");
+include("javascript/utils/Inheritance.js");
+
 include("javascript/ball.js");
 include("javascript/context.js");
 include("javascript/stick.js");
+
+//Global Variables
+var animate=null; //setInterval to mantain ball moving
+var context=null;
 
 
 function init(){
