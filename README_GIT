@@ -1,3 +1,9 @@
+ALUMNES
+-------
+Instal·lar git a linux i
+git pull https://github.com/pedcremo/scriptkana.git
+
+
 GIT
 git://github.com/pedcremo/scriptkana.git
 
@@ -21,6 +27,9 @@ PASOS
 5. Farem 'git commit -m "Primera versió del arkanoid OO"' per consolidar els canvis en el repositori i explicar en una frase breu el perquè (local)
 6. Afegim a la nostra configuració del git el repositori remot en gitHub on allotjarem el nostre repositori "git remote add origin https://github.com/pedcremo/scriptkana.git"
 7. Enviem els nostres canvis locals al repositori remot "git push origin master" ens preguntarà usuari i password de github. Si ens connectem a github vorem com allí comencen a apareixer els arxius del projecte
+OJO: Abans cal fer un pull per primera vegada per sincronitzar en remot
+"git pull https://github.com/pedcremo/scriptkana.git" 
+
 8. Si no volem que ens pregunte usuari cada vegada
  git config --global user.name "Your Name"
     git config --global user.email you@example.com
