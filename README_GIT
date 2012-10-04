@@ -11,3 +11,13 @@ TUTORIAL
 --------
 http://learn.github.com/p/intro.html
 https://help.github.com/articles/create-a-repo
+
+PASOS
+-----
+1. Comencem el nostre projecte en local
+2. dins del directori pare del projecte executem "git init" per crear el repositori
+3. Executem "git add *" per afegir tots els arxius a la stage area (local)
+4. En qualsevol moment podem executar "git status" per saber que hi ha al repositori
+5. Farem 'git commit -m "Primera versió del arkanoid OO"' per consolidar els canvis en el repositori i explicar en una frase breu el perquè (local)
+6. Afegim a la nostra configuració del git el repositori remot en gitHub on allotjarem el nostre repositori "git remote add origin https://github.com/pedcremo/scriptkana.git"
+7. Enviem els nostres canvis locals al repositori remot "git push origin master" ens preguntarà usuari i password de github. Si ens connectem a github vorem com allí comencen a apareixer els arxius del projecte
