@@ -18,18 +18,19 @@ function Stick(context) {
 	}
 	document.onmousemove = getCursorXY;
 	
-	/*this.move= function(){	
-		x= (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-	}*/
-	
+		
+	//Invoked every time Ball changes its position
 	this.Update = function(value){ //Value is a Ball Object
 		var pos=value.getPosition();
 		var limit=this.context.vpHeight-this.gap-value.imgObj.height;
-		if (pos.y>=limit) alert("Sóc el Observer stick "+pos.y);
+		if (pos.y>=limit) {
+			var distance=Math.abs((this.x+this.imgObj.width/2)-(pos.x+value.imgObj.width/2));
+			if (distance<(this.imgObj.width/2+value.imgObj.width/2)) value.rebota();
+		}
 	}
 
 	this.locate = function(x,y){
-		
+		this.x=x;this.y=y;
 		this.imgObj.style.left = (Math.round(x))+ 'px';
 		this.imgObj.style.bottom = (Math.round(y)) + 'px';
 	}

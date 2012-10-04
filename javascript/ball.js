@@ -31,11 +31,10 @@ function Ball(context) {
  }
 
  //Positionate Ball absolutetly
+ //Simplificar
  this.locate = function(x,y){
 	
-	//Avisem als Observers interessats en el nostre estat que estem canviant de posició
-	this.Notify(this);
-
+	
 	//Ens eixim per dalt o per baix
 	modul_dalt_baix=directions.length-1;
 
@@ -62,11 +61,18 @@ function Ball(context) {
 		else this.imgObj.meneja = Math.abs(this.imgObj.meneja-modul_primera);
 	}
 	
+	//Avisem als Observers interessats en el nostre estat que estem canviant de posició
+	this.Notify(this);
+
 	document.getElementById('banner').innerHTML = x+"("+this.context.vpWidth+"),"+y+"("+this.context.vpHeight+") Direccio="+this.imgObj.meneja;	
 	this.imgObj.style.left = (Math.round(x))+ 'px';
 	this.imgObj.style.top = (Math.round(y)) + 'px';
  }; //End locate method
  
+ this.rebota = function(){
+ 	this.imgObj.meneja = Math.abs(this.imgObj.meneja-directions.length-1);
+ }
+
  this.start = function(){
 	//llebeig 0 ,Mestral 1,gregal 2, xaloc 3
 	
