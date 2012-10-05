@@ -1,5 +1,5 @@
 ALUMNES
--------
+-------------
 Instal·lar git a linux "sudo apt-get install git-core" i clonar repositori
 git clone https://github.com/pedcremo/scriptkana.git
 
