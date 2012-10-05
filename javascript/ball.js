@@ -70,7 +70,7 @@ function Ball(context) {
  }; //End locate method
  
  this.rebota = function(){
- 	this.imgObj.meneja = Math.abs(this.imgObj.meneja-directions.length-1);
+ 	this.imgObj.meneja = Math.abs(this.imgObj.meneja-(directions.length-1));
  }
 
  this.start = function(){
