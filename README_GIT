@@ -41,3 +41,47 @@ OJO: Abans cal fer un pull per primera vegada per sincronitzar en remot
  git config --global user.name "Your Name"
     git config --global user.email you@example.com
 
+
+
+Basic reference
+---------------
+git status -s
+first column --> shows difference between committed and staged
+second column  --> shows difference between staged and unstaged
+
+
+git diff --> changes between staged and unstaged
+git diff --cached --> diff between committed and staged changes
+git diff HEAD --> diff between committed and unstaged
+--stat --> shorter summary of changes
+
+git commit --> commits all staged changes
+git commit -a --> commits all changes for all tracked files
+
+git reset HEAD -- file-name
+Unstage all staged changes for a file
+
+git rm --> removes file from staging area and also deletes the file
+git rm --cached --> removes the file from staging area but leaving it on the hard disk
+
+git branch --> lists all branches
+git branch branchname -->creates a new branch
+git checkout branchname --> switch to a new branch
+git checkout -b branchname --> create a new branch and shift to it
+git branch -d branchname --> delete a branch
+
+git log
+git log --oneline
+git log --oneline --graph
+git log --oneline branch1 ^branch2 --> logs in branch1 and not in branch2
+
+git tag -a --> add an annotated tag
+git tag -a commit-SHA --> tag a specific commit
+
+git remote --> list remotes
+git remote -v --> list remotes verbosely
+git remote add <remote-name> git@github.com:<username>/<reponame>.git --> add a github remote
+git remote rm remote-name --> delete a remote
+
+git fetch remote-name
+git pull remote-name = git fetch + git merge
