@@ -19,19 +19,26 @@ function Context(){
 		this.ball.locate((this.vpWidth/2)-32,(this.vpHeight/2)-32);  //Posicionem pilota al mig   		 
    		this.stick=new Stick(this);
    		this.stick.locate((this.vpWidth/2)-32,25);  //Posicionem Stick al mig
-   		
+   		this.setInfoBanner("Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat");
    		
 	};
 	//Comença el joc. La bola comença a moures
     this.start=function(){		
 		this.ball.start();
 		this.gameStarted=true;
+		this.setInfoBanner("");
 	};
 
+	//Escrivim un missatge informatiu a la part de dalt de la web
+	this.setInfoBanner=function(message){
+		document.getElementById('banner').innerHTML=message;
+	}
+	
 	//Para el joc
     this.stop=function(){
    		this.ball.stop();
    		this.gameStarted=false;
+   		this.setInfoBanner("Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat");
 	}
 
 	//Manté el número de vides del joc o si és GAME OVER
