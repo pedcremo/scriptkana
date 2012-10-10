@@ -1,12 +1,19 @@
-
-//Class Context
+/**
+ * Crea una instància de Context. 
+ * Amb aquest objecte (Singleton) per cert. Mantenim el context del joc: vides, on/off posicionament dels
+ * objectes en pantalla etc. Serveix com a pont a la resta d'objectes que composen el joc
+ *
+ * @constructor
+ * @this {Context}
+ */
 function Context(){
     
-    this.gameStarted=false;
+    this.gameStarted=false; //True el joc està en marxa. False el joc està parat
     this.lives=3; 
     
+    //Inicialitzem els objectes del joc
     this.init= function(){
-	//alert("init this");
+	
     	this.ball=new Ball(this);	
     	this.viewporte();
 		this.ball.locate((this.vpWidth/2)-32,(this.vpHeight/2)-32);  //Posicionem pilota al mig   		 
@@ -15,33 +22,38 @@ function Context(){
    		
    		
 	};
-
+	//Comença el joc. La bola comença a moures
     this.start=function(){		
 		this.ball.start();
 		this.gameStarted=true;
 	};
 
+	//Para el joc
     this.stop=function(){
    		this.ball.stop();
    		this.gameStarted=false;
 	}
 
+	//Manté el número de vides del joc o si és GAME OVER
     this.takeLive=function(){
 		this.lives=this.lives-1;
 		if (this.lives==0) {
-			alert("Game Over");
+			alert("GAME OVER");
 			this.stop();
 			init();
 		}else {
 			
 			this.stop();
 			this.init();
-			//this.ball.locate(100,100);  //Posicionem pilota al mig
-			//this.ball.locate((this.vpWidth/2)-32,(this.vpHeight/2)-32);  //Posicionem pilota al mig
-			alert(this.lives+" left ");
+			
+			alert(this.lives+" LEFT ");
 		}
     };
 	
+	/* 
+	*	Usada per calcular la resolució de la finesta en la que el joc començara. Imprescindible
+	*   per calcular rebots i llímits
+	*/
     this.viewporte= function(){
 		var viewportwidth;
  		var viewportheight;

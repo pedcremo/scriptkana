@@ -1,21 +1,30 @@
-//Class ball
+﻿/**
+ * Crea una instància de Ball. 
+ * Amb aquest objecte creem la bola que anira rebotant per tot arreu
+ *
+ * @constructor
+ * @this {Ball}
+ * @param {context} context tots els objectes que formen part del joc mantenen una referència al context
+ *
+ */
 
 function Ball(context) {
 
   this.imgObj= document.getElementById("myBall"); 
   this.imgObj.style.position= 'absolute';
   this.context=context;
-  var self=this;
+  var self=this; //Artifici per fer funcionar setInterval
   
-  //Fem que Ball herete de Subject per tant 
-  //serà un objecte observable a altres objectes interessats
-  //en el seu estat
+  /* Fem que Ball herete de Subject per tant 
+  * serà un objecte observable a altres objectes interessats
+  * en el seu estat (Stick, blocks etc.)
+  */
   inherits(new Subject(),this);
 
   var speed2=2;
   //var directions = [ [2,-2],[-2,-2],[-2,2],[2,2]]; //4 directions
-  //var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
-  var directions = [ [5,-1],[3,-1],[2,-2],[1,-3],[1,-5],[-1,-5],[-1,-3],[-2,-2],[-3,-1],[-5,-1],[-5,1],[-3,1],[-2,2],[-1,3],[-1,5],[1,5],[1,3],[2,2],[3,1],[5,1]]; //20 directions	  
+  var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
+  //var directions = [ [5,-1],[3,-1],[2,-2],[1,-3],[1,-5],[-1,-5],[-1,-3],[-2,-2],[-3,-1],[-5,-1],[-5,1],[-3,1],[-2,2],[-1,3],[-1,5],[1,5],[1,3],[2,2],[3,1],[5,1]]; //20 directions	  
   
       
   //Move ball
@@ -31,7 +40,7 @@ function Ball(context) {
  }
 
  //Positionate Ball absolutetly
- //Simplificar
+ //Cal Simplificar més
  this.locate = function(x,y){
 	
 	
@@ -61,18 +70,25 @@ function Ball(context) {
 		else this.imgObj.meneja = Math.abs(this.imgObj.meneja-modul_primera);
 	}
 	
-	//Avisem als Observers interessats en el nostre estat que estem canviant de posició
-	this.Notify(this);
+	
 
-	document.getElementById('banner').innerHTML = x+"("+this.context.vpWidth+"),"+y+"("+this.context.vpHeight+") Direccio="+this.imgObj.meneja;	
+	//document.getElementById('banner').innerHTML = x+"("+this.context.vpWidth+"),"+y+"("+this.context.vpHeight+") Direccio="+this.imgObj.meneja;	
 	this.imgObj.style.left = (Math.round(x))+ 'px';
 	this.imgObj.style.top = (Math.round(y)) + 'px';
+	//Avisem als Observers interessats en el nostre estat que estem canviant de posició
+	this.Notify(this);
+	
  }; //End locate method
  
  this.rebota = function(){
+<<<<<<< HEAD
+=======
+ 	//alert("rebota de "+this.imgObj.meneja+" a "+Math.abs(this.imgObj.meneja-directions.length-1));
+>>>>>>> Versió una mica documentada
  	this.imgObj.meneja = Math.abs(this.imgObj.meneja-(directions.length-1));
  }
 
+ //Sortejem direcció i comencem a moure la pola
  this.start = function(){
 	//llebeig 0 ,Mestral 1,gregal 2, xaloc 3
 	
@@ -81,13 +97,14 @@ function Ball(context) {
 	//alert("direction = "+this.meneja);
 	
  }
- 
+ //Parem la bola 
  this.stop = function(){
  	clearTimeout(animate);
  };
 
+ //Calculem direcció d'eixida de 0 a 180 graus
  this.getRandomDirection=function(){
-	//llebeig 0 ,Mestral 1,gregal 2, xaloc 3	
+	
 	return Math.floor(Math.random()*(directions.length/2));	
  };
 } //END Class Ball

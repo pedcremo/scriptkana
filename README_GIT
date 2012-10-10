@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
 ALUMNES oee
 -------------
 Instal·lar git a linux "sudo apt-get install git-core" i clonar repositori
+=======
+﻿ALUMNES 
+---------
+Instal·lar git a linux "sudo apt-get install git-core" i clonar repositori (Sols es fa una vegada)
+>>>>>>> Versió una mica documentada
 git clone https://github.com/pedcremo/scriptkana.git
 
-Sincronització
+Sincronització per recollir canvis (Cada vegada que vulguem treballar al projecte i estar sincronitzats amb els canvis del repositori git remot)
 git pull https://github.com/pedcremo/scriptkana.git
+
+URL's del projecte amb diferents protocols
 
 GIT
 git://github.com/pedcremo/scriptkana.git
@@ -16,13 +24,16 @@ git@github.com:pedcremo/scriptkana.git
 HTTP
 https://github.com/pedcremo/scriptkana.git
 
-TUTORIAL
---------
+
+TUTORIAL GIT
+-------------
 http://learn.github.com/p/intro.html
 https://help.github.com/articles/create-a-repo
 
-PASOS
------
+
+
+PASOS PER A QUI TINGA QUE ADMINISTRAR CREAR UN REPOSITORI EN GITHUB DES DE ZERO
+-------------------------------------------------------------------------------
 1. Comencem el nostre projecte en local
 2. dins del directori pare del projecte executem "git init" per crear el repositori
 3. Executem "git add *" per afegir tots els arxius a la stage area (local)
