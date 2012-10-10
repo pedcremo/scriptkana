@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-ALUMNES oee
--------------
-Instal·lar git a linux "sudo apt-get install git-core" i clonar repositori
-=======
 ﻿ALUMNES 
 ---------
 Instal·lar git a linux "sudo apt-get install git-core" i clonar repositori (Sols es fa una vegada)
->>>>>>> Versió una mica documentada
 git clone https://github.com/pedcremo/scriptkana.git
 
 Sincronització per recollir canvis (Cada vegada que vulguem treballar al projecte i estar sincronitzats amb els canvis del repositori git remot)

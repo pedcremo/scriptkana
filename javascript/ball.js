@@ -81,10 +81,7 @@ function Ball(context) {
  }; //End locate method
  
  this.rebota = function(){
-<<<<<<< HEAD
-=======
- 	//alert("rebota de "+this.imgObj.meneja+" a "+Math.abs(this.imgObj.meneja-directions.length-1));
->>>>>>> Versió una mica documentada
+
  	this.imgObj.meneja = Math.abs(this.imgObj.meneja-(directions.length-1));
  }
 
