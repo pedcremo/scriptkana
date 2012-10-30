@@ -19,18 +19,30 @@ function Ball() {
   */
   inherits(new Subject(),this);
 
+<<<<<<< HEAD
   var speed2=3;
   //var directions = [ [2,-2],[-2,-2],[-2,2],[2,2]]; //4 directions
   //var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
   //var directions = [ [5,-1],[3,-1],[2,-2],[1,-3],[1,-5],[-1,-5],[-1,-3],[-2,-2],[-3,-1],[-5,-1],[-5,1],[-3,1],[-2,2],[-1,3],[-1,5],[1,5],[1,3],[2,2],[3,1],[5,1]]; //20 directions	  
   var directions = [ [3,-1],[2,-2],[1,-3]];
+=======
+  var speed2=2; //Velocitat de la bola
+  
+  var directions = [ [3,-1],[2,-2],[1,-3]]; //partim amb sols 3 direccions possibles; 20, 45, 70 graus. Cada element representa un increment/decrement de pixels en x i y 
+  
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
       
-  //Move ball
+  //Meneja la bola
   this.move= function(){	
+<<<<<<< HEAD
 	//alert("move "+self.dirX+","+self.dirY);
 	 context.stick.updateSpeed();
   	 self.locate(parseInt(self.imgObj.style.left)+self.dirX*speed2,parseInt(self.imgObj.style.top)+self.dirY*speed2);  
   
+=======
+	 //posicionem la bola en les noves coordenades X i Y en funcio de la direcció que tinga asignada la bola
+  	 self.locate(parseInt(self.imgObj.style.left)+self.dirX*speed2,parseInt(self.imgObj.style.top)+self.dirY*speed2);  
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
   }; //End move method
   
   
@@ -45,13 +57,18 @@ function Ball() {
 	return {x:parseInt(self.imgObj.style.left),y:parseInt(self.imgObj.style.top)};
  }
 
+<<<<<<< HEAD
  //Positionate Ball absolutetly
+=======
+ //Posicionem Bola de manera absoluta en X i Y i comprovem llímits
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
  
  this.locate = function(x,y){
 	
 	
 	//Ens eixim per dalt
 	if (y<=0 )	this.dirY=this.dirY*(-1);
+<<<<<<< HEAD
 	
 	//Ens eixim per baix
 	if (y>=context.vpHeight-this.imgObj.height) {
@@ -62,6 +79,18 @@ function Ball() {
 	if (x<=0 || x>=context.vpWidth-this.imgObj.width) this.dirX=this.dirX*(-1);
 	
 	
+=======
+	
+	//Ens eixim per baix 
+	if (y>=this.context.vpHeight-this.imgObj.height) {
+			this.context.takeLive();
+			return;
+	}	
+	//Ens eixim per dreta o esquerre
+	if (x<=0 || x>=this.context.vpWidth-this.imgObj.width) this.dirX=this.dirX*(-1);
+	
+	
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
 	this.imgObj.style.left = (Math.round(x))+ 'px';
 	this.imgObj.style.top = (Math.round(y)) + 'px';
 	//Avisem als Observers interessats en el nostre estat que estem canviant de posició
@@ -69,6 +98,7 @@ function Ball() {
 	
  }; //End locate method
  
+<<<<<<< HEAD
  this.rebota = function(typeObject,pos){
  	if (typeObject=="Stick" && pos=="punta"){
  		//alert("punta");
@@ -93,20 +123,46 @@ function Ball() {
  		this.dirX=directions[directionIndex][0];
  		this.dirY=directions[directionIndex][1];
  		//alert("Dir ="+directionIndex+" dirX"+this.dirX);
+=======
+ this.rebota = function(){
+	//Si rebotem canviem el sentit de la bola en el eix Y
+ 	this.dirY*=(-1);
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
  }
 
  //Sortejem direcció i comencem a moure la pola
  this.start = function(){
+<<<<<<< HEAD
 	
 	this.setDirection(1); //Eixim 45º dreta
 	animate=setInterval(self.move, 10);
 	
+=======
+		
+	this.setDirection(this.getRandomDirection());
+	animate=setInterval(self.move, 10);
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
 	
  }
  //Parem la bola 
  this.stop = function(){
  	clearTimeout(animate);
  };
+<<<<<<< HEAD
 
  
+=======
+ //Associem a la bola una direcció i el seu corresponent component dx i dy 
+this.setDirection=function(directionIndex){
+ 		this.imgObj.meneja=directionIndex;
+ 		this.dirX=directions[directionIndex][0];
+ 		this.dirY=directions[directionIndex][1];
+ 		//alert("Dir ="+directionIndex+" dirX"+this.dirX);
+ }
+ //Calculem direcció d'eixida de 0 a 180 graus
+ this.getRandomDirection=function(){
+	
+	return Math.floor(Math.random()*(directions.length));	
+ };
+>>>>>>> 011f48e6149791768c140468a56d8be9bd4a6e43
 } //END Class Ball
