@@ -7,36 +7,74 @@
  * @this {Context}
  */
 function Context(){
-    
+	
+    this.ball=null;
+    this.stick=null;
     this.gameStarted=false; //True el joc està en marxa. False el joc està parat
     this.lives=3; 
+    this.blocks=new Array();
+    this.vpWidth=null; //ViewportX
+    this.vpHeight=null;//ViewportY
+    this.score=0;
     
     //Inicialitzem els objectes del joc
     this.init= function(){
-	
-    	this.ball=new Ball(this);	
+		clearDom();
+    		
     	this.viewporte();
-		this.ball.locate((this.vpWidth/2)-32,(this.vpHeight/2)-32);  //Posicionem pilota al mig   		 
-   		this.stick=new Stick(this);
-   		this.stick.locate((this.vpWidth/2)-32,25);  //Posicionem Stick al mig
-   		this.setBanner("Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat");
+		
+		this.ball=new Ball(this);   		
+   		this.ball.locate((this.vpWidth/2)-32,this.vpHeight-100);  //Posicionem pilota al mig 
+   		  		 
+   		this.stick=new Stick(this);   		
+   		this.stick.locate((this.vpWidth/2)-this.stick.imgObj.width,this.stick.gap);  //Posicionem Stick al mig
    		
-	};
+   		
+   		this.setBanner("<h2>Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat</h2>");
+   		this.createBlocks(24);		
+   	};
+   	
+   	/**
+   	*Inicialitzem el joc amb un número de blocks
+   	* @param {number} Número de blocks*/
+   	this.createBlocks= function(number){
+   		var fila=0;
+   		var col=0;
+   		for (var i=0;i<number;i++){
+   			this.blocks[i]=new Rajola(this.vpWidth*0.30+(col*48),this.vpHeight*0.20+(fila*48));
+   			if (i % 8 == 0){
+   				col=0;fila++;
+   			}else {col++;}
+   			
+   		}
+   	}
+   	
+   	this.addScore = function(points){
+   		this.score+=points;
+   		this.setBanner("<h1>Punts: "+this.score+"<h1>");
+   	};
+   	
 	//Comença el joc. La bola comença a moures
     this.start=function(){		
 		this.ball.start();
 		this.gameStarted=true;
-		this.setBanner("");
+		this.setBanner("<h1>Punts: "+this.score+"<h1>");
 	};
 
 	//Para el joc
     this.stop=function(){
    		this.ball.stop();
    		this.gameStarted=false;
-   		this.setBanner("Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat");
+   		this.setBanner("<h2>Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat</h2>");
 	}
 	this.setBanner=function(message){
 		document.getElementById('banner').innerHTML =message;
+	}
+	
+	this.youWin=function(){
+		alert("HAS GUANYAT. Congratulations !!! ");
+		this.stop();
+		init();
 	}
 
 	//Manté el número de vides del joc o si és GAME OVER
@@ -49,9 +87,11 @@ function Context(){
 		}else {
 			
 			this.stop();
-			this.init();
+			this.ball.locate((this.vpWidth/2)-32,this.vpHeight-100);  //Posicionem pilota al mig   		 
+   			this.stick.locate((this.vpWidth/2)-32,25);  //Posicionem Stick al mig
+   			this.setBanner("<h2>Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat</h2>");
 			
-			alert(this.lives+" LEFT ");
+			alert(this.lives+" VIDES RESTANTS ");
 		}
     };
 	
@@ -60,7 +100,7 @@ function Context(){
 	*   per calcular rebots i llímits
 	*/
     this.viewporte= function(){
-		var viewportwidth;
+		/*var viewportwidth;
  		var viewportheight;
   
  		// the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
@@ -88,7 +128,14 @@ function Context(){
  		}
  		
  		this.vpWidth=viewportwidth;
- 		this.vpHeight=viewportheight;
+ 		this.vpHeight=viewportheight;*/
+ 		this.vpWidth=window.innerWidth
+		|| document.documentElement.clientWidth
+		|| document.body.clientWidth;
+
+		this.vpHeight=window.innerHeight
+		|| document.documentElement.clientHeight
+		|| document.body.clientHeight;
  		
 		//return { width : viewportwidth , height : viewportheight };
 	};	
