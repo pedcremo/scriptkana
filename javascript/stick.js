@@ -8,18 +8,22 @@
  *
  */
 
-function Stick(context) {
+function Stick() {
 	
-	this.imgObj= document.getElementById("myStick"); 
-  	this.imgObj.style.position= 'absolute';
+	
+  	this.imgObj = insertImage("images/stick.png","myStick");
 	this.position="bottom"; //Bottom,top,right,left, 
-	this.gap="25";    //From position in pixels
-	this.context=context;
+	this.gap="25";    //From this.position in pixels
+	
+	this.oldX=0; //X position 10 miliseconds ago
+	this.speed=0;
+	
+
 
 	//Heretem de la classe Observer pq nosaltres volem observar l'estat de la Ball
 	inherits(new Observer(), this);
 	//Ens apuntem com Observadors dels canvis d'estat de la bola
-	this.context.ball.AddObserver(this);
+	context.ball.AddObserver(this);
 
 	//Pareix que açò està una mica deprecated
 	if (window.Event) {
@@ -27,14 +31,27 @@ function Stick(context) {
 	}
 	document.onmousemove = getCursorXY;
 	
+	
+	this.updateSpeed=function(){
 		
+		this.speed=Math.abs(this.x-this.oldX);
+		this.oldX=this.x;	
+		context.setBanner("<h1>Punts: "+context.score+"</h1> Stick speed="+this.speed);
+	}
+	
 	//Invocat cada vegada que la bola canvia de posició
-	this.Update = function(value){ //Value is a Ball Object
-		var pos=value.getPosition();
-		var limit=this.context.vpHeight-this.gap-value.imgObj.height;
+	this.Update = function(bola){ //bola is a Ball Object
+		var pos=bola.getPosition();
+		var limit=context.vpHeight - this.gap - bola.imgObj.height;
 		if (pos.y>=limit) {
-			var distance=Math.abs((this.x+this.imgObj.width/2)-(pos.x+value.imgObj.width/2));
-			if (distance<(this.imgObj.width/2+value.imgObj.width/2)) {value.rebota();}
+			var distance=Math.abs((this.x+this.imgObj.width/2)-(pos.x+bola.imgObj.width/2));
+			var minDist=(this.imgObj.width/2+bola.imgObj.width/2);
+			if (distance<minDist) {
+				//alert((minDist-distance));
+				if ((minDist-distance)<23) bola.rebota("Stick","punta");
+				else if ((minDist-distance)<23 && speed>5) bola.rebota("Stick","punteta");
+				else bola.rebota("Stick","mig");
+			}
 		}
 	}
 	//Posicionem la bola a les coordenades x,y
@@ -47,9 +64,11 @@ function Stick(context) {
 
 function getCursorXY(e) {
     x= (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-    if (context.gameStarted) {
-	context.stick.locate(x,25);
-	
+    context.stick.locate(x,25);	
+    if (context.gameStarted==false) {
+    	//Si no hem començat el joc podem menejar la bola i stick junts a qualsevol punt inicial
+    	posball=context.ball.getPosition();
+		context.ball.locate(x,posball.y);
     }
 	
 	//document.getElementById('cursorX').value = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);

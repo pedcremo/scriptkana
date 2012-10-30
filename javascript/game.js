@@ -29,16 +29,18 @@ include("javascript/utils/Inheritance.js");
 include("javascript/ball.js");
 include("javascript/context.js");
 include("javascript/stick.js");
+include("javascript/rajola.js");
 
 //Global Variables
 var context=null; //Manté el context del joc: vides, objectes que el composen etc.
-
+var animate=null;
+var timer_stick=null; //Manté timer del stick per saber quina és la seua velocitat
 
 /**
  * Inicialitzem el context del joc amb aquesta funció. Però no el comencem encara.
  */
 function init(){
-    
+   
 	context=new Context();
 	context.init();
 }
@@ -64,7 +66,7 @@ function stop(){
 */
 window.onresize = function() {
 	//Start again
-	init();
+	//init();
 }
 
 
@@ -80,6 +82,8 @@ window.onkeypress = function (evt)
     	if (context.gameStarted){
     		stop();
         }else{
+        	//clearDom();
+        	//alert("CLEAR");
         	start();
         }
 }

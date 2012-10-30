@@ -1,19 +1,30 @@
 <html>
 <head>
-<title>Scriptkana</title>
-<script type="text/javascript" src="javascript/game.js"></script>
+<script>
+function open_win()
+{
+
+myWindow=window.open('skriptkana.html','','width=1024,height=768,scrollbars=no,resizable=no');
+myWindow.focus();
+}
+function mOver(obj)
+{
+obj.src="images/play_button_on.png"
+}
+
+function mOut(obj)
+{
+obj.src="images/play_button.png"
+}
+</script>
 </head>
-<body onload="init()">
-<form>
-<img id="myBall" src="images/ball.jpg" />
-<img id="myStick" src="images/stick.png" />
+<body bgcolor="#5d9bb7">
 
-<p id="banner"></p>
+<br><br>
+<center><img src="images/logo_skriptkana.png" /> 
+<br><br><br><br><br><br><br>
+<img src="images/play_button.png" onclick="open_win()" onmouseover="mOver(this)" onmouseout="mOut(this)"/> 
 
-<!-- <input type="button" value="Start" onclick="start();" />
-<input type="button" value="Stop" onclick="stop();" />
-<br>
--->
-</form>
+</center>
 </body>
 </html>
