@@ -19,15 +19,16 @@ function Ball() {
   */
   inherits(new Subject(),this);
 
+
   var speed2=3;
   //var directions = [ [2,-2],[-2,-2],[-2,2],[2,2]]; //4 directions
   //var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
   //var directions = [ [5,-1],[3,-1],[2,-2],[1,-3],[1,-5],[-1,-5],[-1,-3],[-2,-2],[-3,-1],[-5,-1],[-5,1],[-3,1],[-2,2],[-1,3],[-1,5],[1,5],[1,3],[2,2],[3,1],[5,1]]; //20 directions	  
   var directions = [ [3,-1],[2,-2],[1,-3]];
       
-  //Move ball
+  //Meneja la bola
   this.move= function(){	
-	//alert("move "+self.dirX+","+self.dirY);
+
 	 context.stick.updateSpeed();
   	 self.locate(parseInt(self.imgObj.style.left)+self.dirX*speed2,parseInt(self.imgObj.style.top)+self.dirY*speed2);  
   
@@ -45,13 +46,13 @@ function Ball() {
 	return {x:parseInt(self.imgObj.style.left),y:parseInt(self.imgObj.style.top)};
  }
 
- //Positionate Ball absolutetly
- 
+ //Posicionem Bola de manera absoluta en X i Y i comprovem llímits
  this.locate = function(x,y){
 	
 	
 	//Ens eixim per dalt
 	if (y<=0 )	this.dirY=this.dirY*(-1);
+	
 	
 	//Ens eixim per baix
 	if (y>=context.vpHeight-this.imgObj.height) {
@@ -60,7 +61,6 @@ function Ball() {
 	}	
 	//Ens eixim per dreta o esquerre
 	if (x<=0 || x>=context.vpWidth-this.imgObj.width) this.dirX=this.dirX*(-1);
-	
 	
 	this.imgObj.style.left = (Math.round(x))+ 'px';
 	this.imgObj.style.top = (Math.round(y)) + 'px';
@@ -93,7 +93,7 @@ function Ball() {
  		this.dirX=directions[directionIndex][0];
  		this.dirY=directions[directionIndex][1];
  		//alert("Dir ="+directionIndex+" dirX"+this.dirX);
- }
+}
 
  //Sortejem direcció i comencem a moure la pola
  this.start = function(){
@@ -101,12 +101,10 @@ function Ball() {
 	this.setDirection(1); //Eixim 45º dreta
 	animate=setInterval(self.move, 10);
 	
-	
  }
  //Parem la bola 
  this.stop = function(){
  	clearTimeout(animate);
  };
 
- 
 } //END Class Ball
