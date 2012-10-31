@@ -43,6 +43,11 @@ OJO: Abans cal fer un pull per primera vegada per sincronitzar en remot
     git config --global user.email you@example.com
 
 
+Fluxe de treball amb git
+-------------------------
+Recomanat llegir http://desarrollo-web.github.com/labs/intro-git-github.html
+1. "git pull" cada cop que comencem a treballar amb el nostre projecte
+2. 
 
 Basic reference
 ---------------
