@@ -20,7 +20,7 @@ function Ball() {
   inherits(new Subject(),this);
 
 
-  var speed2=3;
+  var speed2=1;
   //var directions = [ [2,-2],[-2,-2],[-2,2],[2,2]]; //4 directions
   //var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
   //var directions = [ [5,-1],[3,-1],[2,-2],[1,-3],[1,-5],[-1,-5],[-1,-3],[-2,-2],[-3,-1],[-5,-1],[-5,1],[-3,1],[-2,2],[-1,3],[-1,5],[1,5],[1,3],[2,2],[3,1],[5,1]]; //20 directions	  
@@ -81,7 +81,9 @@ function Ball() {
  	}else if (typeObject=="block" && pos=="dalt_baix"){
  		this.dirY*=(-1);
  	}else if (typeObject=="block" && pos=="dreta_esquerre"){
+ 	    
  		this.dirX*=(-1);
+ 		
  	}else{
 		this.dirY*=(-1);
  	}
@@ -99,7 +101,7 @@ function Ball() {
  this.start = function(){
 	
 	this.setDirection(1); //Eixim 45º dreta
-	animate=setInterval(self.move, 10);
+	animate=setInterval(self.move, 5);
 	
  }
  //Parem la bola 

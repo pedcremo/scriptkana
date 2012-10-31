@@ -45,7 +45,9 @@ OJO: Abans cal fer un pull per primera vegada per sincronitzar en remot
 
 Fluxe de treball amb git
 -------------------------
-Recomanat llegir http://desarrollo-web.github.com/labs/intro-git-github.html
+Recomanat llegir http://git-scm.com/book/es/Git-en-entornos-distribuidos-Flujos-de-trabajo-distribuidos 
+
+
 1. "git pull" cada cop que comencem a treballar amb el nostre projecte
 2. "git add ." Per afegir els arxius que hem modificat al commit (no és necessari si fem "git commit -a -m "MESSAGE" ja que la -a afegeix a la stage àrea els arxius modificats) i "git add ARXIU" per afegir els nous que hem creat
 3. Per fer commit sempre recomanable "git commit -a -m 'MISSATGE'" fent que el missatge siga el més descriptiu possible.

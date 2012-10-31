@@ -42,8 +42,9 @@ function Stick() {
 	//Invocat cada vegada que la bola canvia de posició
 	this.Update = function(bola){ //bola is a Ball Object
 		var pos=bola.getPosition();
-		var limit=context.vpHeight - this.gap - bola.imgObj.height;
+		var limit=context.vpHeight - this.gap - bola.imgObj.height-this.imgObj.height;
 		if (pos.y>=limit) {
+			//alert("Posy bola->"+pos.y+"limit>"+limit);
 			var distance=Math.abs((this.x+this.imgObj.width/2)-(pos.x+bola.imgObj.width/2));
 			var minDist=(this.imgObj.width/2+bola.imgObj.width/2);
 			if (distance<minDist) {
