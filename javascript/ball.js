@@ -20,7 +20,7 @@ function Ball() {
   inherits(new Subject(),this);
 
 
-  var speed2=2;
+  var speed2=1;
   //var directions = [ [2,-2],[-2,-2],[-2,2],[2,2]]; //4 directions
   //var directions = [ [3,-1],[2,-2],[1,-3],[-1,-3],[-2,-2],[-3,-1],[-3,1],[-2,2],[-1,3],[1,3],[2,2],[3,1]]; //12 directions
   //var directions = [ [5,-1],[3,-1],[2,-2],[1,-3],[1,-5],[-1,-5],[-1,-3],[-2,-2],[-3,-1],[-5,-1],[-5,1],[-3,1],[-2,2],[-1,3],[-1,5],[1,5],[1,3],[2,2],[3,1],[5,1]]; //20 directions	  
@@ -35,7 +35,10 @@ function Ball() {
   }; //End move method
   
   
-  
+ this.setSpeed=function(speed){
+ 	speed2=speed;
+ }
+
  // Get ball position. Respecte al seu centre  
  this.getCenteredPosition = function(){
 	return {x:parseInt(self.imgObj.style.left)+(self.imgObj.width/2),y:parseInt(self.imgObj.style.top)+(self.imgObj.height/2)};

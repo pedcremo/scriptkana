@@ -66,7 +66,24 @@ function Rajola(posx,posy) {
 				$( "#dialog" ).load("questions/"+Math.floor(Math.random()*4)+".html");
 				$( "#dialog" ).dialog();
 				context.stop();
+				
+				img =context.stick.imgObj.src;
+				//alert("CAnviem imatge "+img);
+				if (img.match(/stick.png$/)) {
+					img="images/stick1.png";
+					Objectbola.setSpeed(2);
+				}else if (img.match(/stick1.png$/)){
+					 img="images/stick2.png";	
+					Objectbola.setSpeed(3);
+				}else if (img.match(/stick2.png$/)) {
+					img="images/stick3.png";	
+					Objectbola.setSpeed(4);
+				}
+				//alert("CAnviem imatge per "+img);
+				context.stick.imgObj.src=img;
 			}
+			
+
 			Objectbola.RemoveObserver(this);
 			
 			removeImage(this.id);
