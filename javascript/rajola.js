@@ -61,7 +61,23 @@ function Rajola(posx,posy) {
 				Objectbola.rebota("block","dalt_baix");
 			}
 			
-			if (this.tipus=="question") alert("atenció pregunta !!!!");
+			if (this.tipus=="question") {
+				//alert("atenció pregunta !!!!");
+				img =context.stick.imgObj.src;
+				//alert("CAnviem imatge "+img);
+				if (img == "file:///home/usuari/scriptkana/images/stick.png") {
+					img="file:///home/usuari/scriptkana/images/stick1.png";
+					Objectbola.setSpeed(2);
+				}else if (img == "file:///home/usuari/scriptkana/images/stick1.png"){
+					 img="file:///home/usuari/scriptkana/images/stick2.png";	
+					Objectbola.setSpeed(3);
+				}else if (img == "file:///home/usuari/scriptkana/images/stick2.png") {
+					img="file:///home/usuari/scriptkana/images/stick3.png";	
+					Objectbola.setSpeed(4);
+				}
+				//alert("CAnviem imatge per "+img);
+				context.stick.imgObj.src=img;
+			}
 			
 			Objectbola.RemoveObserver(this);
 			
