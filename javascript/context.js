@@ -1,5 +1,5 @@
-/**
- * Crea una instància de Context. 
+ï»¿/**
+ * Crea una instÃ ncia de Context. 
  * Amb aquest objecte (Singleton) per cert. Mantenim el context del joc: vides, on/off posicionament dels
  * objectes en pantalla etc. Serveix com a pont a la resta d'objectes que composen el joc
  *
@@ -10,7 +10,8 @@ function Context(){
 	
     this.ball=null;
     this.stick=null;
-    this.gameStarted=false; //True el joc està en marxa. False el joc està parat
+    this.gameStarted=false; //True el joc estÃ  en marxa. False el joc estÃ  parat
+    this.gameStopped=false;  //Quan el joc es para a propÃ²sit o surt una pregunta
     this.lives=3; 
     this.blocks=new Array();
     this.vpWidth=null; //ViewportX
@@ -30,13 +31,13 @@ function Context(){
    		this.stick.locate((this.vpWidth/2)-this.stick.imgObj.width,this.stick.gap);  //Posicionem Stick al mig
    		
    		
-   		this.setBanner("<h2>Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat</h2>");
+   		this.setBanner("<h2>Polsa la barra espaiadora per comenÃ§ar i/o parar el joc quan estigues preparat</h2>");
    		this.createBlocks(24);		
    	};
    	
    	/**
-   	*Inicialitzem el joc amb un número de blocks
-   	* @param {number} Número de blocks*/
+   	*Inicialitzem el joc amb un nÃºmero de blocks
+   	* @param {number} NÃºmero de blocks*/
    	this.createBlocks= function(number){
    		var fila=0;
    		var col=0;
@@ -54,10 +55,11 @@ function Context(){
    		this.setBanner("<h1>Punts: "+this.score+"<h1>");
    	};
    	
-	//Comença el joc. La bola comença a moures
+	//ComenÃ§a el joc. La bola comenÃ§a a moures
     this.start=function(){		
 		this.ball.start();
 		this.gameStarted=true;
+		this.gameStopped=false;
 		this.setBanner("<h1>Punts: "+this.score+"<h1>");
 	};
 
@@ -65,7 +67,8 @@ function Context(){
     this.stop=function(){
    		this.ball.stop();
    		this.gameStarted=false;
-   		this.setBanner("<h2>Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat</h2>");
+   		this.gameStopped=true;
+   		this.setBanner("<h2>Polsa la barra espaiadora per comenÃ§ar i/o parar el joc quan estigues preparat</h2>");
 	}
 	this.setBanner=function(message){
 		document.getElementById('banner').innerHTML =message;
@@ -77,7 +80,7 @@ function Context(){
 		init();
 	}
 
-	//Manté el número de vides del joc o si és GAME OVER
+	//MantÃ© el nÃºmero de vides del joc o si Ã©s GAME OVER
     this.takeLive=function(){
 		this.lives=this.lives-1;
 		if (this.lives==0) {
@@ -89,15 +92,15 @@ function Context(){
 			this.stop();
 			this.ball.locate((this.vpWidth/2)-32,this.vpHeight-100);  //Posicionem pilota al mig   		 
    			this.stick.locate((this.vpWidth/2)-32,25);  //Posicionem Stick al mig
-   			this.setBanner("<h2>Polsa la barra espaiadora per començar i/o parar el joc quan estigues preparat</h2>");
+   			this.setBanner("<h2>Polsa la barra espaiadora per comenÃ§ar i/o parar el joc quan estigues preparat</h2>");
 			
 			alert(this.lives+" VIDES RESTANTS ");
 		}
     };
 	
 	/* 
-	*	Usada per calcular la resolució de la finesta en la que el joc començara. Imprescindible
-	*   per calcular rebots i llímits
+	*	Usada per calcular la resoluciÃ³ de la finesta en la que el joc comenÃ§ara. Imprescindible
+	*   per calcular rebots i lÃ­mits
 	*/
     this.viewporte= function(){
 		/*var viewportwidth;

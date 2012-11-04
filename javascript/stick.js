@@ -66,7 +66,7 @@ function Stick() {
 function getCursorXY(e) {
     x= (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
     context.stick.locate(x,25);	
-    if (context.gameStarted==false) {
+    if (context.gameStarted==false && context.gameStopped==false) {
     	//Si no hem començat el joc podem menejar la bola i stick junts a qualsevol punt inicial
     	posball=context.ball.getPosition();
 		context.ball.locate(x,posball.y);

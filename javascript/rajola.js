@@ -61,8 +61,12 @@ function Rajola(posx,posy) {
 				Objectbola.rebota("block","dalt_baix");
 			}
 			
-			if (this.tipus=="question") alert("atenció pregunta !!!!");
-			
+			if (this.tipus=="question") {
+				//alert("atenció pregunta !!!!");
+				$( "#dialog" ).load("questions/"+Math.floor(Math.random()*4)+".html");
+				$( "#dialog" ).dialog();
+				context.stop();
+			}
 			Objectbola.RemoveObserver(this);
 			
 			removeImage(this.id);
